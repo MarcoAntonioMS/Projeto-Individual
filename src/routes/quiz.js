@@ -13,6 +13,11 @@ router.get("/listar", function (req, res) {
     quizController.listar(req, res);
 });
 
+router.get("/buscar", function (req, res) {
+
+    quizController.buscar(req, res);
+});
+
 router.post("/opinar", function (req, res) {
 
     quizController.opinar(req, res);

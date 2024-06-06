@@ -80,8 +80,28 @@ function listar(req, res) {
             }
         );
 }
+
+function buscar(req, res) {
+
+    quizModel.buscar()
+        .then(
+            function (resultado) {
+                res.status(200).json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar a busca Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 module.exports = {
     listar,
     cadastrar,
-    opinar
+    opinar,
+    buscar
 }

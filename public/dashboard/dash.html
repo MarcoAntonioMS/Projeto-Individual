@@ -45,13 +45,21 @@
             </ul>
         </div>
     </div>
-    <div class="banner">
-       
-        <div class="dash">
-            <canvas id="myChart"></canvas>
-        </div>
-    </div>
+    <div class="pai">
 
+        <div class="banner">
+            <div class="dash">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <div class="banner2">
+            <div class="dash2">
+                <canvas id="myChart2"></canvas>
+            </div>
+        </div>
+
+    </div>
 </body>
 
 </html>
@@ -59,7 +67,7 @@
 <script>
     let usuarios = []
     let aproveitamento = []
-
+    let QtdAcertos = []
 
     window.onload = () => {
         obterDadosGrafico()
@@ -83,7 +91,7 @@
                             aproveitamento.push(json[i].Aproveitamento)
                         }
                         plotarGrafico()
-                        
+
                     })
                     console.log = ("FUNFOUUUUUUU");
 
@@ -100,7 +108,7 @@
         if (Chart.getChart(ctx)) {
             Chart.getChart(ctx).destroy();
         }
-
+        obterDadosGrafico2()
         new Chart(ctx, {
             type: 'bar',
             data: {
@@ -132,14 +140,81 @@
                 scales: {
                     y: {
                         beginAtZero: true
-                    }
+                    },
                 }
             }
         });
     }
 
 
+    function obterDadosGrafico2() {
+
+        let proximaAtualizacao;
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch("/quiz/buscar")
+            .then(function (resposta) {
+
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        for (var i = 0; i < json.length; i++) {
+                            QtdAcertos.push(json[i].QtdAcertos)
+                        }
+                        plotarGrafico2()
+
+                    })
+                    console.log = ("FUNFOUUUUUUU");
 
 
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+    }
+
+    function plotarGrafico2() {
+        const ctx2 = document.getElementById('myChart2');
+        if (Chart.getChart(ctx2)) {
+            Chart.getChart(ctx2).destroy();
+        }
+
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: usuarios,
+                datasets: [{
+                    label: [`Jogadores com Maior Média de Questões Certas`],
+                    data: QtdAcertos,
+                    borderWidth: 1,
+                    borderColor: [
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)',
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)',
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)'
+                    ],
+                    backgroundColor: [
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)',
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)',
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)'
+                    ],
+                    barThickness: 50
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                }
+            }
+        });
+    }
 
 </script>

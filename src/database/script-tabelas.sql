@@ -23,3 +23,4 @@ fkUsuário int,
 Opinião varchar(300),
 primary key(idOpinião, fkUsuário),
 foreign key (fkUsuário) references Usuário (idUsuario));
+

@@ -8,6 +8,15 @@ function listar() {
     return database.executar(instrucaoSql);
 }
 
+
+function buscar() {
+    var instrucaoSql = `
+select Usuário.nome as 'Nome', avg(QtdAcertos) as 'QtdAcertos' from quiz join Usuário on fkUsuario = idUsuario group by idUsuario; 
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function cadastrar(Usuario, Aproveitamento, QtdAcertos) {
     var instrucaoSql = `
         INSERT INTO quiz (fkUsuario, Aproveitamento, QtdAcertos) VALUES (${Usuario}, ${Aproveitamento} , ${QtdAcertos});
@@ -27,5 +36,6 @@ function opinar(Usuario, avaliação) {
 module.exports = {
     cadastrar,
     listar,
-    opinar
+    opinar,
+    buscar
 };
