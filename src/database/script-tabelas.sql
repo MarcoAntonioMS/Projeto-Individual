@@ -1,6 +1,6 @@
 create database corinthians;
 		
-use corinthians;
+use corinthians;	
 
 create table Usuário(
 idUsuario int primary key auto_increment,
@@ -18,9 +18,24 @@ foreign key (fkUsuario) references Usuário (idUsuario)
 );
 
 create table opiniões(
-idOpinião int auto_increment,
+idOpiniões int auto_increment,
 fkUsuário int, 
 Opinião varchar(300),
-primary key(idOpinião, fkUsuário),
+primary key(idOpiniões, fkUsuário),
 foreign key (fkUsuário) references Usuário (idUsuario));
 
+create table Pergunta(
+fkQuiz int, 
+idPergunta int,
+primary key(fkQuiz, idPergunta),
+Pergunta varchar(45));
+
+create table RespostaUsuario (
+    fkUsuario int,
+    fkQuiz int,
+    fkPergunta int,
+    primary key (fkUsuario, fkQuiz, fkPergunta),
+    foreign key(fkQuiz) references Pergunta(fkQuiz),
+    foreign key (fkUsuario) references Usuário(idUsuario),
+    foreign key (fkPergunta) references Pergunta(idPergunta)
+);

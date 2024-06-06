@@ -9,7 +9,6 @@ body {
 .header {
     background-color: black;
     border-bottom: 2px solid white;
-    margin: 20px;
     margin-bottom: 100px;
 }
 
@@ -84,8 +83,7 @@ ul li a:hover {
     justify-content: space-between;
 }
 
-.banner .container .borda {
-    border: 2px solid white;
+.banner .container {
     padding: 20px;
 }
 
@@ -97,12 +95,8 @@ ul li a:hover {
     width: 400px;
 }
 
-.footer {
-    background-color: black;
-    color: white;
+.banner .container h2 {
+    margin: 0 auto;
+    border-bottom: 2px solid white;
 }
 
-.footer .container {
-    justify-content: center;
-    align-items: center;
-}

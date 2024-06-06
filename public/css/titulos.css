@@ -116,3 +116,13 @@ ul li a:hover {
 .banner .container  .Rio-sp img{
     width: 90px;
 }
+
+.masculino{
+    margin: 0 auto;
+    border-bottom: 2px solid white;
+}
+
+.feminino{
+    margin: 0 auto;
+    border-bottom: 2px solid white;
+}

@@ -2,53 +2,53 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Corinthians | </title>
+  <title>Corinthians | </title>
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="./js/sessao.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/cadastro.css">
+  <link rel="stylesheet" href="./css/cadastro.css">
 
 </head>
 
 <body>
 
-    <div class="banner" data-aos="fade-up" data-aos-duration="3000">
-        <div class="container">
+  <div class="banner" data-aos="fade-up" data-aos-duration="3000">
+    <div class="container">
 
-            <div class="borda">
-              <button id="closeButton">X</button>
-              <h2>Cadastre-se</h2>
-                <p class="nome"><i>Nome: </i></p>
-                <input id="nome_input" type="text">
-                <p><i>Sobrenome: </i></p>
-                <input id="sobrenome_input" type="text">
-                <p><i>E-mail: </i></p>
-                <input id="email_input" type="text">
-                <p><i>Senha: </i></p>
-                <input id="senha_input" type="password">
-                <p><i> Confirmar Senha: </i></p>
-                <input id="confirmar_senha_input" type="password">
+      <div class="borda">
+        <button id="closeButton">X</button>
+        <h2>Cadastre-se</h2>
+        <p class="nome"><i>Nome: </i></p>
+        <input id="nome_input" type="text">
+        <p><i>Sobrenome: </i></p>
+        <input id="sobrenome_input" type="text">
+        <p><i>E-mail: </i></p>
+        <input id="email_input" type="text">
+        <p><i>Senha: </i></p>
+        <input id="senha_input" type="password">
+        <p><i> Confirmar Senha: </i></p>
+        <input id="confirmar_senha_input" type="password">
 
-                <button class="botao" onclick="cadastrar()"><strong>Cadastrar-se</strong></button>
-               
-                  <p class="usuario">Já possui uma conta? <a href="login.html" class="clique-aqui">Clique Aqui</a></p>
-                  <div id="mensagem"></div>
+        <button class="botao" onclick="cadastrar()"><strong>Cadastrar-se</strong></button>
 
-                  <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/loading-branco.htm" id="loading-gif">
-                  </div>
-            
-            </div>
+        <p class="usuario">Já possui uma conta? <a href="login.html" class="clique-aqui">Clique Aqui</a></p>
+        <div id="mensagem"></div>
+
+        <div id="div_aguardar" class="loading-div">
+          <img src="./assets/loading-branco.htm" id="loading-gif">
         </div>
-    </div>
 
-   
-  
+      </div>
+    </div>
+  </div>
+
+
+
 </body>
 
 </html>
@@ -59,13 +59,17 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   function cadastrar() {
-    aguardar()
+    
     var nome = nome_input.value
     var sobrenome = sobrenome_input.value
     var email = email_input.value
     var senha = senha_input.value
     var confirmar_senha = confirmar_senha_input.value
 
+    if (nome == "" || sobrenome == "" || email == "" || senha == "" || confirmar_senha == "" || senha.length < 6 || confirmar_senha != senha) {
+      alert("Informações Inválidas")
+    }else{
+      aguardar()
     fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
@@ -82,7 +86,7 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          console.log= ("FUNFOUUUUUUU");
+          console.log = ("FUNFOUUUUUUU");
 
           mensagem.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
@@ -91,17 +95,17 @@
             window.location = "Login.html";
           }, "2000");
 
-        
+
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
-    
+
     return false;
-  }
+  }}
 
   document.getElementById("closeButton").addEventListener("click", function () {
-        window.location.href = "../index.html"
-      });
-      AOS.init();
+    window.location.href = "../index.html"
+  });
+  AOS.init();
 </script>
