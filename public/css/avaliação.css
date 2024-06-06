@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #181920;
+}
+
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+  }
+  
+  .header {
+    background-color: black;
+    border-bottom: 2px solid white;
+    color: white;
+  }
+  
+  .header .container {
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    height: 120px;
+  }
+
+  .header .container .icon {
+    display: flex;
+    flex-direction: line;
+    align-items: center;
+    height: 120px;
+  }
+  
+  .header .container img {
+    width: 70px;
+    display: flex;
+  }
+  
+  .header a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  ul {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 30px;
+    ;
+    list-style: none;
+    color: white;
+    font-size: 20px;
+    gap: 10px;
+    font-style: italic;
+  }
+  
+  ul li a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+  }
+  
+  ul li a:hover {
+    background-color: black;
+    color: white;
+    border-bottom: 2px solid white;
+  }
+
+  .header .container .hello {
+    font-size: 15px;
+    color: white;
+}
+.banner {
+    display: flex;
+    justify-content: center;
+    height: 606px;
+    width: 100%;
+    background-image: url("../assets/c76fc22972602cd585beccfb9be283c8.jpg");
+    background-size: cover;
+    ;
+}
+
+.header .container .icon {
+    display: flex;
+    flex-direction: line;
+    align-items: center;
+    height: 120px;
+  }
+
+.banner .container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    margin-top: 15px;
+    width: 800px;
+    height: 510px;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.35);
+    color: white;
+}
+
+.texto {
+    margin: 0 auto 15px;
+    margin-top: 105px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: oblique;
+    resize: none;
+    border: 2px solid black;
+}
+
+#contador{
+    color: white;
+    font-weight: bold;
+}
+
+.banner .container button {
+    margin-top: 12px;
+    background-color: #5e2129;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 6px;
+    height: 48px;
+    padding: 0 32px;
+    transition: filter 0.2s;
+}
+
+.banner .container button:hover {
+    cursor: pointer;
+    background-color: rgb(94, 92, 92);
+}
+
+.header .container li .hello {
+    font-size: 20px;
+    color: white;
+}
+
+#mensagem{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}

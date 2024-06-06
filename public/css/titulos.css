@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: black;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: black;
+    border-bottom: 2px solid white;
+    margin-bottom: 100px;
+}
+
+.header .container h1 {
+    color: white;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.header .container img {
+    width: 70px;
+    display: flex;
+}
+
+.header .container {
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+}
+
+.header .container h1 {
+    font-size: 40px;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+ul {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: white;
+    font-size: 20px;
+    gap: 10px;
+    font-style: italic;
+}
+
+ul li {
+    display: inline-block;
+}
+
+ul li a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    background-color: black;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.banner {
+    background-color: black;
+    color: white;
+}
+
+.banner .container {
+    display: flex;
+    align-items: left;
+    text-align: left;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.banner .container .libertadores img{
+    width: 70px;
+}
+.banner .container  .paulistas img{
+    width: 40px;
+}
+.banner .container .brasileirao img{
+    width: 75px;
+}
+
+.banner .container  .copaDoBrasil img{
+    width: 90px;
+}
+
+.banner .container  .mundial img{
+    width: 70px;
+}
+
+.banner .container  .serieB img{
+    width: 70px;
+}
+
+.banner .container  .superCopa img{
+    width: 80px;
+}
+
+.banner .container  .Rio-sp img{
+    width: 90px;
+}

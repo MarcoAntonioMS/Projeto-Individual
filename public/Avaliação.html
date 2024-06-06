@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/avaliação.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+          <div class="icon">
+          <img class="PerfilIcon" src="./assets/bonequinho login.png">
+          <div class="hello">
+            <h3>Olá, <br><span id="b_usuario"></span></h3>
+          </div>
+        </div>
+          <img src="./assets/simbolo1910.jpg">
+          <img class="escudo" src="./assets/escudo.jpg">
+          
+    
+          <ul class="navbar">
+
+            <li>
+                <a href="./IndexLogado.html"> Home</a>
+              </li>
+            <li> <a href="quiz.html">Game</a></li>
+    
+            <li> <a href="./dashboard/dash.html">Painel</a></li>
+    
+            <li>|</li>
+    
+            <li><a href="./História.html">História</a></li>
+    
+            <li>
+              <a href="./titulos.html">Títulos</a>
+            </li>
+    
+            
+    
+          </ul>
+        </div>
+      </div>
+
+
+    <div class="banner">
+        <div class="container" data-aos="fade-up" data-aos-duration="3000">
+
+            <h1>Deixe Aqui sua Sugestão</h1>
+            <textarea id="texto" class="texto" rows="4" cols="50" maxlength="300" oninput="Procurar()"></textarea>
+            <div id="contador">Caracteres Restantes: 300</div>
+            <button onclick="avaliar()"><b>Enviar</b></button>
+            <div id="mensagem"></div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+
+    window.onload = () => {
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    }
+
+    function avaliar() {
+        let avaliação = texto.value
+        let Usuario = sessionStorage.ID_USUARIO
+
+        if (texto.value.length < 3) {
+            alert("Digite ao menos três Caracteres na Avaliação")
+        }
+        else {
+            fetch("/quiz/opinar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    UsuarioServer: Usuario,
+                    avaliaçãoServer: avaliação
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        console.log = ("FUNFOUUUUUUU");
+                        mensagem.innerHTML = ("Obrigado pela Avaliação! Redirecionando para a Home...")
+
+
+                    } else {
+                        throw "Houve um erro ao enviar a Avaliação";
+                    }
+
+                    setTimeout(function () {
+                        window.location = "../indexLogado.html";
+                    }, 3000);
+                })
+        }
+    }
+    function Procurar() {
+        contador.innerHTML = (`Caracteres Restantes: ${300 - texto.value.length}`)
+    }
+
+
+    AOS.init();
+
+</script>
+</script>

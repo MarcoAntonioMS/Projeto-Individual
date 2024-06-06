@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #181920;
+    overflow: hidden;
+}
+
+
+.banner .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+
+}
+
+.banner .container img {
+    margin-top: 10px;
+    width: 65px;
+}
+
+.banner .container .borda {
+    padding: 15;
+    display: flex;
+    border: 2px solid white;
+    width: 800px;
+    height: 450px;
+    color: white;
+    flex-direction: column;
+    gap: 3px;
+    margin: 15;
+    justify-content: center;
+    align-items: center;
+    background-color: black
+}
+
+.banner .container .borda p {
+    font-size: 20px;
+}
+
+.banner .container .borda input {
+    width: 380px;
+    height: 35px;
+    border-radius: 9px;
+    border-color: white;
+    background-size: 30px;
+    background-color: white;
+    padding-inline-start: 20px;
+}
+
+.banner .container .borda .entrar {
+    margin-top: 10px;
+    width: 100px;
+    height: 45px;
+    border-radius: 9px;
+    border-color: white;
+    background-size: 30px;
+    background-color: #cfb53b;
+}
+
+.banner .container .borda button:hover {
+    cursor: pointer;
+}
+
+.banner .container .borda .entrar:hover{
+    background-color: #9e8a2e;
+}
+
+.banner .container .borda .clique-aqui {
+    font-size: 15px;
+}
+
+.banner .container .borda a {
+    text-decoration: none;
+    color: white;
+}
+
+.banner .container .borda .clique-aqui:hover {
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 2px solid white;
+}
+
+.banner .container .borda .usuario {
+    font-size: 15px;
+}
+
+.loading-div {
+    width: 50px;
+    display: none;
+}
+
+.loading-div img {
+    height: 50px;
+    width: 50px;
+}
+
+.container {
+    position: relative;
+}
+
+.borda {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+#closeButton {
+    position: absolute;
+    margin-top: 1px;
+    top: 0;
+    right: 1px;
+    border: 1px solid white;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 75px;
+    height: 40px
+}
+
+#closeButton:hover {
+    background-color: darkred;
+}

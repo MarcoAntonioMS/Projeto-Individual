@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Corinthians | DashBoard</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="container">
+            <div class="icon">
+                <img class="PerfilIcon" src="../assets/bonequinho login.png">
+                <div class="hello">
+                    <h3>Olá, <br><span id="b_usuario"></span></h3>
+                </div>
+            </div>
+            <img src="../assets/simbolo1910.jpg">
+            <img class="escudo" src="../assets/escudo.jpg">
+
+
+            <ul class="navbar">
+                <li> <a href="../IndexLogado.html">Home</a></li>
+
+
+                <li> <a href="../quiz.html">Game</a></li>
+
+                <li>|</li>
+
+                <li><a href="../História.html">História</a></li>
+
+                <li>
+                    <a href="../titulos.html">Títulos</a>
+                </li>
+
+                <li>
+                    <a href="../Avaliação.html">Sugestões</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="banner">
+       
+        <div class="dash">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    let usuarios = []
+    let aproveitamento = []
+
+
+    window.onload = () => {
+        obterDadosGrafico()
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    }
+    function obterDadosGrafico() {
+
+        let proximaAtualizacao;
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch("/quiz/listar")
+            .then(function (resposta) {
+
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        for (var i = 0; i < json.length; i++) {
+                            usuarios.push(json[i].Nome)
+                            aproveitamento.push(json[i].Aproveitamento)
+                        }
+                        plotarGrafico()
+                        
+                    })
+                    console.log = ("FUNFOUUUUUUU");
+
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+    }
+
+
+    function plotarGrafico() {
+        const ctx = document.getElementById('myChart');
+        if (Chart.getChart(ctx)) {
+            Chart.getChart(ctx).destroy();
+        }
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: usuarios,
+                datasets: [{
+                    label: [`Jogadores com Maior Porcentagem de Acertos`],
+                    data: aproveitamento,
+                    borderWidth: 1,
+                    borderColor: [
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)',
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)',
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)'
+                    ],
+                    backgroundColor: [
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)',
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)',
+                        'rgba(0, 0, 0)',
+                        'rgba(255, 255, 255)'
+                    ],
+                    barThickness: 50
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
+
+</script>

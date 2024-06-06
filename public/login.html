@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Corinthians | Login</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="./css/Login.css">
+
+</head>
+
+<body>
+
+    <div class="banner" data-aos="fade-up" data-aos-duration="3000">
+        <div class="container">
+
+            <div class="borda">
+                <button id="closeButton">X</button>
+
+                <img src="../assets/simbolo1910.jpg" alt="">
+                <p><i>E-mail: </i></p>
+                <input id="email_input" type="text">
+                
+                <p><i>Senha: </i></p>
+                <input id="senha_input" type="password">
+
+                <button onclick="entrar()" class="entrar"><strong>Entrar</strong></button>
+                <p class="usuario">Ainda não é Usuário? <a href="cadastro.html" class="clique-aqui">Clique Aqui</a></p>
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/loading-branco.htm" id="loading-gif">
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+
+    function entrar() {
+        aguardar()
+        console.log(`dentro da função`)
+        var email = email_input.value;
+        var senha = senha_input.value;
+
+        if (email == "" || senha == "") {
+            finalizarAguardar()
+            console.log = "(Login Inválido!)";
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "../IndexLogado.html";
+                    }, 2000);
+                    console.log = (`Deu certo`)
+                });
+
+
+            } else {
+                alert(`Informações inválidas`)
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+
+    }
+
+    document.getElementById("closeButton").addEventListener("click", function () {
+        window.location.href = "../index.html"
+    });
+
+    AOS.init();
+
+</script>
